@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import SearchInput from "./components/SearchInput";
+import ImageList from "./components/ImageList";
 class App extends Component {
   state = {
     images: [],
@@ -11,7 +12,7 @@ class App extends Component {
     const response = await axios.get(
       `https://pixabay.com/api/?key=21085798-195cd403946ce8bf293dce4af&q=${entry}&image_type=photo`
     );
-    console.log(response.data.hits);
+    // console.log(response.data.hits);
     this.setState({
       images: response.data.hits,
     });
@@ -25,6 +26,7 @@ class App extends Component {
         {/* ¸pass function submit ion search input */}
         <SearchInput onSearchSubmit={this.onSearchSubmit} />
         We have {this.state.images.length}
+        <ImageList images={this.state.images} />
       </div>
     );
   }
